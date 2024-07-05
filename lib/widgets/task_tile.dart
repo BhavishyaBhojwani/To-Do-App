@@ -6,6 +6,12 @@ import 'package:sizer/sizer.dart';
 import '../controllers/task_controller.dart';
 import '../models/task_model.dart';
 
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+
 class TaskTile extends StatelessWidget {
   final Task task;
   final int index;
@@ -45,7 +51,7 @@ class TaskTile extends StatelessWidget {
             ),
           ),
           title: Text(
-            task.title,
+            StringExtension(task.title).capitalize(),
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,

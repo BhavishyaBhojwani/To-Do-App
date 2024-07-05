@@ -60,11 +60,39 @@ class TaskListView extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(right: 2.w),
-                child: Image.asset(
-                  'assets/images/hi.png',
-                  width: 14.w,
-                  height: 10.h,
-                  fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(
+                          'Reminder',
+                          style: TextStyle(fontSize: 14.sp),
+                        ),
+                        content: Text(
+                          'Have you completed your tasks?',
+                          style: TextStyle(fontSize: 12.sp),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              'OK',
+                              style: TextStyle(fontSize: 12.sp),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/images/hi.png',
+                    width: 14.w,
+                    height: 9.h,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],
