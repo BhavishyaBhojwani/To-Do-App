@@ -5,6 +5,7 @@ import '../services/firebase_service.dart';
 class TaskController extends GetxController {
   var tasks = <Task>[].obs;
   var searchQuery = ''.obs;
+  var isLoading = true.obs; // Add isLoading state
 
   final FirebaseService _firebaseService = FirebaseService();
 
@@ -15,8 +16,10 @@ class TaskController extends GetxController {
   }
 
   void fetchTasks() async {
+    isLoading.value = true; // Set loading state
     var fetchedTasks = await _firebaseService.getTasks();
     tasks.assignAll(fetchedTasks);
+    isLoading.value = false; // Set loading state
   }
 
   void addTask(Task task) {
@@ -45,13 +48,30 @@ class TaskController extends GetxController {
     }
   }
 
+  void sortByPriority() {
+    tasks.sort((a, b) => a.priorityLevel.compareTo(b.priorityLevel));
+  }
+
+  void sortByDueDate() {
+    tasks.sort((a, b) => a.dueDate.compareTo(b.dueDate));
+  }
+
+  void sortByCreationDate() {
+    tasks.sort((a, b) =>
+        a.id.compareTo(b.id)); // Assuming ID is based on creation date
+  }
+
   List<Task> get filteredTasks {
     if (searchQuery.value.isEmpty) {
       return tasks;
     } else {
       return tasks.where((task) {
-        return task.title.toLowerCase().contains(searchQuery.value.toLowerCase()) ||
-            task.description.toLowerCase().contains(searchQuery.value.toLowerCase());
+        return task.title
+                .toLowerCase()
+                .contains(searchQuery.value.toLowerCase()) ||
+            task.description
+                .toLowerCase()
+                .contains(searchQuery.value.toLowerCase());
       }).toList();
     }
   }
