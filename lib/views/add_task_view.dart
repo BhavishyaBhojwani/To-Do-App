@@ -56,7 +56,7 @@ class AddTaskView extends StatelessWidget {
             TextFormField(
               controller: _priorityController,
               decoration: InputDecoration(
-                labelText: 'Priority Level (1-3)',
+                labelText: 'Priority Level',
                 labelStyle: TextStyle(fontSize: 12.sp),
               ),
               keyboardType: TextInputType.number,

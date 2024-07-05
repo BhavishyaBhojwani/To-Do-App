@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/views/view_task.dart';
 import 'package:get/get.dart';
 import 'views/task_list_view.dart';
 import 'views/add_task_view.dart';
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => TaskListView()),
         GetPage(name: '/add-task', page: () => AddTaskView()),
-        GetPage(name: '/edit-task', page: () => EditTaskView()),
+        GetPage(name: '/edit-task', page: () => EditTaskView()),    
+        GetPage(name: '/view-task', page: () => ViewTaskScreen()), // Add this line
+
       ],
     );
   }

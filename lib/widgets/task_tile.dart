@@ -24,18 +24,17 @@ class TaskTile extends StatelessWidget {
     }
 
     String formatCreatedAt(String id) {
-      // Assuming your id is a timestamp in string format
       var timestamp = DateTime.parse(id); // Convert string to DateTime
       var formatter = DateFormat('dd-MM-yyyy');
       return formatter.format(timestamp);
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
+      padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(color: Colors.grey[300]!), // Border color
+          side: BorderSide(color: Colors.grey[300]!),
         ),
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
@@ -92,12 +91,9 @@ class TaskTile extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  // Toggle task completion status
                   isCompleted.value = !isCompleted.value;
-                  // Update completion status in Firebase or wherever it's stored
                   _taskController.updateTaskCompletion(task.id, isCompleted.value);
 
-                  // Show snackbar if task is completed
                   if (isCompleted.value) {
                     Get.snackbar(
                       'Task Completed',
@@ -117,7 +113,7 @@ class TaskTile extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 4.w),
+              SizedBox(width: 2.w),
               GestureDetector(
                 onTap: () {
                   showDialog(
@@ -134,7 +130,7 @@ class TaskTile extends StatelessWidget {
                       actions: [
                         TextButton(
                           onPressed: () {
-                            Navigator.pop(context); // Close the dialog
+                            Navigator.pop(context);
                           },
                           child: Text(
                             'No',
@@ -144,7 +140,7 @@ class TaskTile extends StatelessWidget {
                         TextButton(
                           onPressed: () {
                             _taskController.deleteTask(task.id);
-                            Navigator.pop(context); // Close the dialog
+                            Navigator.pop(context);
                             Get.snackbar(
                               'Task Deleted',
                               'The task has been deleted successfully.',
@@ -165,6 +161,18 @@ class TaskTile extends StatelessWidget {
                 child: Icon(
                   Icons.delete_outline,
                   color: Colors.red,
+                  size: 20.sp,
+                ),
+              ),
+              SizedBox(width: 2.w),
+              GestureDetector(
+                onTap: () {
+                  // Navigate to the task details view
+                  Get.toNamed('/view-task', arguments: task);
+                },
+                child: Icon(
+                  Icons.remove_red_eye,
+                  color: Colors.blue,
                   size: 20.sp,
                 ),
               ),

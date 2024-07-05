@@ -16,7 +16,7 @@ class TaskListView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              'To-Do List',
+              'ToDoBuddy',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.sp,
@@ -28,15 +28,6 @@ class TaskListView extends StatelessWidget {
                 onPressed: () {
                   Get.toNamed('/add-task');
                 },
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 4.w),
-                child: Image.asset(
-                  'assets/images/hi.png',
-                  width: 14.w,
-                  height: 10.h,
-                  fit: BoxFit.cover,
-                ),
               ),
               PopupMenuButton(
                 itemBuilder: (context) => [
@@ -66,6 +57,15 @@ class TaskListView extends StatelessWidget {
                       break;
                   }
                 },
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 2.w),
+                child: Image.asset(
+                  'assets/images/hi.png',
+                  width: 14.w,
+                  height: 10.h,
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
