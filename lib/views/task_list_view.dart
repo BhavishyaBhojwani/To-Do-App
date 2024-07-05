@@ -105,11 +105,12 @@ class TaskListView extends StatelessWidget {
                           ),
                         );
                       }
-                      return ListView.builder(
-                        itemCount: filteredTasks.length,
-                        itemBuilder: (context, index) {
-                          return TaskTile(task: filteredTasks[index], index: index);
-                        },
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: List.generate(filteredTasks.length, (index) {
+                            return TaskTile(task: filteredTasks[index], index: index);
+                          }),
+                        ),
                       );
                     }
                   }),
