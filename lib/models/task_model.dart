@@ -4,7 +4,7 @@ class Task {
   String id;
   String title;
   String description;
-  int priorityLevel; // 1: High, 2: medium, 3: low
+  int priorityLevel;
   Timestamp dueDate;
   bool isCompleted;
 
@@ -17,20 +17,19 @@ class Task {
     this.isCompleted = false,
   });
 
-  factory Task.fromJson(Map<String, dynamic> json) {
+  factory Task.fromDocument(DocumentSnapshot doc) {
     return Task(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      priorityLevel: json['priorityLevel'],
-      dueDate: json['dueDate'],
-      isCompleted: json['isCompleted'],
+      id: doc.id,
+      title: doc['title'],
+      description: doc['description'],
+      priorityLevel: doc['priorityLevel'],
+      dueDate: doc['dueDate'],
+      isCompleted: doc['isCompleted'],
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'title': title,
       'description': description,
       'priorityLevel': priorityLevel,

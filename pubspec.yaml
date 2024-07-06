@@ -38,13 +38,16 @@ dependencies:
   http:
   intl:
   get:
-  firebase_core:
+  firebase_core: 
   cloud_firestore:  
   anim_search_bar: ^2.0.3
   sizer: ^2.0.15
-  flutter_local_notifications: ^17.2.1
-  flutter_datetime_picker: ^1.5.1
-  firebase_messaging: ^15.0.2
+  flutter_local_notifications: 
+  flutter_datetime_picker: 
+  firebase_messaging: 
+  timezone: 
+  firebase_crashlytics: 
+
   
 
 dev_dependencies:
