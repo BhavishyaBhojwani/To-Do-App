@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_application_1/app.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_application_1/services/local_notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,13 +12,7 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
   // Initialize local notifications plugin
-  const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/todobuddy');
-  final InitializationSettings initializationSettings =
-      InitializationSettings(android: initializationSettingsAndroid);
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  LocalNotificationService.initialize();
 
   // Set up Firebase Messaging onMessage handler
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -29,18 +23,7 @@ void main() async {
     AndroidNotification? android = message.notification?.android;
 
     if (notification != null && android != null) {
-      flutterLocalNotificationsPlugin.show(
-        notification.hashCode,
-        notification.title,
-        notification.body,
-        NotificationDetails(
-          android: AndroidNotificationDetails(
-            "task_channel",
-            "Task Notifications",
-            icon: android.smallIcon,
-          ),
-        ),
-      );
+      LocalNotificationService.createAndDisplayNotification(message);
     }
   });
 
