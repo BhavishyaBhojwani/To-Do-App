@@ -13,7 +13,7 @@ void main() async {
 
   // Initialize local notifications plugin
   const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
+      AndroidInitializationSettings('@mipmap/todobuddy');
   final InitializationSettings initializationSettings =
       InitializationSettings(android: initializationSettingsAndroid);
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

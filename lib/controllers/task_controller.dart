@@ -9,6 +9,7 @@ class TaskController extends GetxController {
   var tasks = <Task>[].obs;
   var searchQuery = ''.obs;
   var isLoading = true.obs;
+  
 
   final FirebaseService _firebaseService = FirebaseService();
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();

@@ -7,7 +7,7 @@ class LocalNotificationService {
 
   static void initialize() {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/todobuddy');
 
     final InitializationSettings initializationSettings =
         InitializationSettings(
