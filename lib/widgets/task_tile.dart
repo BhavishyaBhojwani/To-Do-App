@@ -54,8 +54,11 @@ class TaskTile extends StatelessWidget {
             StringExtension(task.title).capitalize(),
             style: TextStyle(
               fontSize: 14.sp,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.bold
             ),
+            overflow: TextOverflow.ellipsis, // Add ellipsis for overflow
+            maxLines: 1, // Restrict to 2 lines
+
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,8 +67,8 @@ class TaskTile extends StatelessWidget {
               Text(
                 task.description,
                 style: TextStyle(fontSize: 10.sp),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+                overflow: TextOverflow.ellipsis, // Add ellipsis for overflow
+                maxLines: 2, // Restrict to 2 lines
               ),
               SizedBox(height: 0.2.h),
               Text(
