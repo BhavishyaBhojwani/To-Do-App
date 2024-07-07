@@ -48,6 +48,9 @@ dependencies:
   timezone: 
   firebase_crashlytics: 
   firebase_core_platform_interface: ^5.1.0  
+  animated_splash_screen:
+  permission_handler: ^10.0.0
+
 
 
 dev_dependencies:
