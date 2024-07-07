@@ -9,10 +9,10 @@ class TaskController extends GetxController {
   var tasks = <Task>[].obs;
   var searchQuery = ''.obs;
   var isLoading = true.obs;
-  
 
   final FirebaseService _firebaseService = FirebaseService();
-  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   @override
   void onInit() {
@@ -102,8 +102,26 @@ class TaskController extends GetxController {
 
       // Cancel or reschedule notification based on task completion status
       if (isCompleted) {
+        // Task is completed, cancel notification
         cancelNotification(id);
+
+        // Show completion notification
+        _flutterLocalNotificationsPlugin.show(
+          id.hashCode,
+          'Task Completed',
+          'You completed the task "${tasks[index].title}"!',
+          const NotificationDetails(
+            android: AndroidNotificationDetails(
+              'task_channel',
+              'Task Notifications',
+              importance: Importance.max,
+              enableVibration: true,
+              priority: Priority.high,
+            ),
+          ),
+        );
       } else {
+        // Task is not completed, reschedule notification
         scheduleNotificationForTask(tasks[index]);
       }
     }
