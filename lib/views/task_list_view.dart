@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/themes.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../controllers/task_controller.dart';
 import '../widgets/task_tile.dart';
+import '../controllers/theme_controller.dart';
 
 class TaskListView extends StatelessWidget {
   final TaskController _taskController = Get.put(TaskController());
   final TextEditingController textController = TextEditingController();
+  final ThemeController _themeController = Get.put(ThemeController());
 
   TaskListView() {
     textController.addListener(() {
@@ -110,6 +113,14 @@ class TaskListView extends StatelessWidget {
                     ),
                   ),
                 ),
+                Obx(() => IconButton(
+                  icon: _themeController.isDarkMode.value
+                      ? Icon(Icons.lightbulb_outline)
+                      : Icon(Icons.nightlight_round),
+                  onPressed: () {
+                    _themeController.switchTheme(!_themeController.isDarkMode.value);
+                  },
+                )),
               ],
             ),
             body: Padding(
@@ -121,7 +132,7 @@ class TaskListView extends StatelessWidget {
                     child: TextField(
                       controller: textController,
                       decoration: InputDecoration(
-                        hintText: 'Search tasks...',
+                        hintText: 'Search...',
                         suffixIcon: IconButton(
                           icon: Icon(Icons.clear, size: 20.sp),
                           onPressed: () {
@@ -160,12 +171,11 @@ class TaskListView extends StatelessWidget {
                             ),
                           );
                         }
-                        return SingleChildScrollView(
-                          child: Column(
-                            children: List.generate(filteredTasks.length, (index) {
-                              return TaskTile(task: filteredTasks[index], index: index);
-                            }),
-                          ),
+                        return ListView.builder(
+                          itemCount: filteredTasks.length,
+                          itemBuilder: (context, index) {
+                            return TaskTile(task: filteredTasks[index], index: index);
+                          },
                         );
                       }
                     }),

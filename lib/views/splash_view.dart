@@ -18,6 +18,7 @@ class AnimatedSplashScreenPage extends StatelessWidget {
         height: size.height * 0.9, 
         fit: BoxFit.contain, // Cover the entire screen with the image
       ),
+      
       nextScreen: TaskListView(),
       splashTransition: SplashTransition.slideTransition,
       backgroundColor: Colors.white,

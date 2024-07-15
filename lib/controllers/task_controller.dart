@@ -24,6 +24,7 @@ class TaskController extends GetxController {
   void fetchTasks() async {
     isLoading.value = true;
     var fetchedTasks = await _firebaseService.getTasks();
+    print("Tasks are fetching $fetchedTasks");
     tasks.assignAll(fetchedTasks);
     isLoading.value = false;
 

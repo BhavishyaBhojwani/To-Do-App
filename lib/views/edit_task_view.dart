@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import '../controllers/task_controller.dart';
+import '../controllers/theme_controller.dart'; // Import ThemeController
 import '../models/task_model.dart';
-
 class EditTaskView extends StatelessWidget {
   final TaskController _taskController = Get.find();
+  final ThemeController _themeController = Get.find(); // Retrieve ThemeController instance
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +147,7 @@ class EditTaskView extends StatelessWidget {
                 },
                 child: Text('Update Task', style: TextStyle(fontSize: 12.sp)),
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h), backgroundColor: _themeController.isDarkMode.value ? Colors.teal : Colors.white,
                 ),
               ),
             ],

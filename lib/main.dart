@@ -32,5 +32,4 @@ void main() async {
 
 Future<void> backgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
-  // Handle background message here
 }
